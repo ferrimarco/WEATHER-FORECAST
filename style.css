@@ -1,0 +1,22 @@
+#hero{
+    background-image: url('https://images.pexels.com/photos/907485/pexels-photo-907485.jpeg?auto=compress&cs=tinysrgb&w=1600');
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+#map {
+    height: 350px;
+}
+
+.flex-fill {
+    flex: 1 !important
+}
+
+.creationListGroup li{
+    list-style: none;
+}

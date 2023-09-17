@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>weather forecast</title>
+
+    <!-- tutti i link -->
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+    <section id="hero">
+        <div class="d-flex justify-content-center align-items-center .flex-sm-column">
+            <div class="hero-content text-center text-white">
+
+                <!--Titolo e Sottotitolo-->
+                <h1 class="fs-3">
+                    Weather forecast
+                </h1>
+
+                <h2 class="fs-4">
+                    indica un punto nella mappa per avere info sul meteo
+                </h2>
+
+                <!--Creazione Mappa-->
+                <div id="map" class="mt-5"></div>
+
+                <!--Dati inseriti dall'utente-->
+                <div class="weatherFormRequest mt-5">
+                    <form action="">
+                        <div class="formRow d-flex text-white d-flex justify-content-between">
+                            <div class="field flex fill m-r-100">
+                                <label for="lat" class="fst-italic fw-bolder">LATIDUDINE</label>
+                                <input style="width: 100%; border: none; border-radius: 5px;" class="d-block text-center" type="text" name="lat" id="lat" placeholder="coordinate latitudine">
+                                <div class="field flex-fill m-r-100">
+                                    <input style="width: 100%; border: none" type="reset" class="d-block btn btn-danger mt-2" value="reset">
+                                </div>
+                            </div>
+
+                            <div class="field flex fill m-l-100">
+                                <label for="lat" class="fst-italic fw-bolder">LONGITUDINE</label>
+                                <input style="width: 100%; border: none; border-radius: 5px;" class="d-block text-center" type="text" name="lng" id="lng" placeholder="coordinate longitudine">
+                                <div class="field flex-fill m-l-100 ">
+                                    <input style="width: 100%; border: none;" type="submit" class="d-block btn btn-success mt-2" value="submit">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!--Crazione lista tramite js per visualizzare le condizioni metereologiche-->
+                <div class="weatherConditionList">
+                    <ul class="creationListGroup mt-3 text-black">
+                        
+                    </ul>
+                </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script src="script.js"></script>
+    <script src="leaflet.js"></script>
+</body>
+</html>
