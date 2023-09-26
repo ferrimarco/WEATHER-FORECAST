@@ -1,39 +1,41 @@
-document.querySelector("form").addEventListener("submit", function (event){
-    event.preventDefault()
+let can = document.querySelector("canvas")
 
-    //dichiarazioni variabili latitudini e longitudini
-    let latitudine = document.querySelector("#lat").value
-    let longitudine = document.querySelector("#lng").value
-    
-    //vado a vedere se nella console log mi escano i valori
-    console.log(latitudine, longitudine)
+navigator.geolocation.getCurrentPosition(
+    //se l'utente accetta di condividere la sua posizione, la mappa verrà generata in base alla posizione dell'utente
+    function (accept){
+        const Utentlat = accept.coords.latitude
+        const UtentLnl = accept.coords.longitude
+        document.querySelector("#lat").value = Utentlat
+        document.querySelector("#lng").value = UtentLnl
 
-    //andiamo a fare la richiesta asincrona all'api di open.meteo
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitudine}&longitude=${longitudine}&hourly=temperature_2m,relativehumidity_2m,precipitation_probability,windspeed_10m`
+        //test per capire ocme funzione
+        console.log("L'utente ha accettato di condividere la sua posizione, le sue coordinate sono: longitudine: " + UtentLnl + "  e latitudine: " + Utentlat)
 
-    console.log(url)
+        creationMap(UtentLnl, Utentlat)
+    }, 
 
-    fetch(url).then(function (resp) {
-        return resp.json()
-    }).then(function (data) {
+    //se l'utente non accetta di condividere la sua posizione, la mappa verrà generata in maniera casuale
+    function (decline){
+        console.log("L'utente non ha accettato di condividere la sua posizione")
+        creationMap(80, 50)
+    }
+)
 
-        console.log(data)
+function creationMap(lat, lng)
+{
+    let map = L.map('map').setView([lat, lng], 13);
 
-        let list = document.querySelector(".creationListGroup")
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+    }).addTo(map);
 
-        for (let i = 0; i < 7; i++) {
-            let Element = document.createElement("li")
+    map.on("click", function(e) {
+        //console.log(e)
 
-            Element.innerHTML = ` il ${data.hourly.time[i]} ci sono ${data.hourly.temperature_2m[i]}°`
-            list.appendChild(Element)
- 
-        }
+        let marker = L.marker([e.latlng.lat, e.latlng.lng]).addTo(map)
+        
+        let latitudine = document.querySelector("#lat").value = e.latlng.lat
+        let longitude = document.querySelector("#lng").value = e.latlng.lng 
     })
-
-
-
-
-
-
-
-})
+}
